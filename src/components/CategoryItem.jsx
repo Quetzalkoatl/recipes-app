@@ -16,14 +16,21 @@ const CategoryItem = ({
 }) => {
 	return (
 		<Grid item xs={8} md={3}>
-			<Card sx={{height: '100%', backgroundColor: '#e1f5fe'}}>
+			<Card
+				sx={{
+					height: '100%',
+					backgroundColor: '#e1f5fe',
+					display: 'flex',
+					flexDirection: 'column',
+				}}
+			>
 				<CardMedia
 					component='img'
 					alt={strCategory}
 					height='200'
 					image={strCategoryThumb}
 				/>
-				<CardContent>
+				<CardContent sx={{flexGrow: '1'}}>
 					<Typography gutterBottom variant='h5' component='div'>
 						{strCategory}
 					</Typography>

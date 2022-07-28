@@ -14,7 +14,7 @@ const Home = () => {
 	}, [dispatch]);
 
 	return (
-		<Grid container spacing={2} sx={{m: '1rem', maxWidth: '98%'}}>
+		<Grid container spacing={2} sx={{m: 'auto', maxWidth: '75%'}}>
 			{categories.map(item => {
 				return <CategoryItem key={item.idCategory} {...item} />;
 			})}

@@ -12,6 +12,23 @@ code {
     monospace;
 }
 
+ul {
+  list-style-type: none;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse
+}
+
+td {
+  width: 20rem;
+}
+
+.table {
+  font-size: 20px;
+}
+
 .link {
   color: white;
   text-decoration: none

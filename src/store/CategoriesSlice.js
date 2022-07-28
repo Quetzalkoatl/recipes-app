@@ -6,7 +6,7 @@ export const fetchCategories = createAsyncThunk(
 	'categories/fetchCategories',
 	async function (_, {rejectWithValue}) {
 		try {
-			const response = await fetch(`${API_URL}/categories.php`);
+			const response = await fetch(API_URL + '/categories.php');
 
 			if (!response.ok) {
 				throw new Error('Cant fetch resipes');
@@ -49,6 +49,6 @@ const categoriesSlice = createSlice({
 	},
 });
 
-const {addCategory} = categoriesSlice.actions;
+// const {addCategory} = categoriesSlice.actions;
 
 export const categoriesReducer = categoriesSlice.reducer;

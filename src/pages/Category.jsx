@@ -17,7 +17,12 @@ const Category = () => {
 	const recipes = useSelector(state => state.categoryRecipes.categoryRecipes);
 
 	return (
-		<Grid container spacing={2} sx={{m: '1rem', maxWidth: '98%'}}>
+		<Grid
+			className='grid-list'
+			container
+			spacing={2}
+			sx={{m: 'auto', maxWidth: '75%'}}
+		>
 			{recipes.map(recipe => {
 				return <ResipesItem key={recipe.idMeal} {...recipe} />;
 			})}
