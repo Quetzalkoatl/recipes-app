@@ -1,29 +1,9 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableContainer,
-	TableHead,
-	TableRow,
-	Paper,
-} from '@mui/material';
+import {LinearProgress} from '@mui/material';
 
 import {fetchRecipe} from '../store/RecipeSlice';
-
-function createData(name, calories, fat, carbs, protein) {
-	return {name, calories, fat, carbs, protein};
-}
-
-const rows = [
-	createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-	createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-	createData('Eclair', 262, 16.0, 24, 6.0),
-	createData('Cupcake', 305, 3.7, 67, 4.3),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 const Recipe = () => {
 	const dispatch = useDispatch();
@@ -33,20 +13,26 @@ const Recipe = () => {
 		dispatch(fetchRecipe(id));
 	}, [dispatch, id]);
 
-	const recipe = useSelector(state => state.recipe.recipe);
+	const recipe = useSelector(state => state.recipe);
 
 	return (
 		<>
-			{recipe.map(item => {
+			{recipe.status === 'loading' && <LinearProgress sx={{m: '2rem'}} />}
+			{recipe.status === 'rejected' && <h2>{recipe.error}</h2>}
+			{recipe.recipe.map(item => {
 				return (
 					<ul key={item.idMeal}>
 						<li>
-							<img height='500px' src={item.strMealThumb} alt={item.idMeal} />
+							<img
+								className='recipe-img'
+								src={item.strMealThumb}
+								alt={item.idMeal}
+							/>
 						</li>
 						<li>
 							<h2>{item.strMeal}</h2>
 						</li>
-						<li style={{paddingRight: '30%'}}>{item.strInstructions}</li>
+						<li className='recipe-instructions'>{item.strInstructions}</li>
 						<li style={{margin: '2rem 0'}}>
 							<table className='table'>
 								<thead>
@@ -72,11 +58,12 @@ const Recipe = () => {
 						</li>
 						{item.strYoutube ? (
 							<>
-								<li style={{marginTop: '3rem'}}>
+								<li className='video-title' style={{marginTop: '3rem'}}>
 									<h3>Video recipe</h3>
 								</li>
 								<li>
 									<iframe
+										className='video-recipe'
 										width='720'
 										height='400'
 										title={item.idMeal}
