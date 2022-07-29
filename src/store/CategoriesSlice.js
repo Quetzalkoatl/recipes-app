@@ -28,11 +28,7 @@ const categoriesSlice = createSlice({
 		status: null,
 		error: null,
 	},
-	reducers: {
-		addCategory(state, action) {
-			state.categories.push(action.payload);
-		},
-	},
+	reducers: {},
 	extraReducers: {
 		[fetchCategories.pending]: state => {
 			state.status = 'loading';
@@ -48,7 +44,5 @@ const categoriesSlice = createSlice({
 		},
 	},
 });
-
-// const {addCategory} = categoriesSlice.actions;
 
 export const categoriesReducer = categoriesSlice.reducer;
