@@ -10,7 +10,7 @@ import NotFound from './pages/NotFound';
 function App() {
 	return (
 		<>
-			<Router>
+			<Router basename='/recipes-app'>
 				<Header />
 				<main className='container content'>
 					<Routes>
